@@ -21,10 +21,12 @@ namespace Calculator
             Division
         }
 
+
+
         private void OnClickNumberButton(object sender, EventArgs e)
         {
             var clickedValue = ((Button)sender).Text;
-            
+
             if (Display.Text == "0" && clickedValue == "0")
             {
                 Display.Text = "0";
@@ -34,16 +36,25 @@ namespace Calculator
                 if (Display.Text == "0")
                 {
                     Display.Text = string.Empty;
-                    if (clickedValue == ",")
-                    {
-                        Display.Text = "0";
-                        wasComma = true;
-                    }
                 }
                 
                 Display.Text += clickedValue;
 
             }                       
+        }
+
+        private void OnClickCommaButton(object sender, EventArgs e)
+        {
+            if (wasComma == false)
+            {
+                if (Display.Text == "0")
+                {
+                    Display.Text = "0,";
+                }
+                else Display.Text += ",";
+
+                wasComma = true;
+            }
         }
 
         private void ClearButton(object sender, EventArgs e)
@@ -52,6 +63,7 @@ namespace Calculator
             firstNumber = 0;
             secondNumber = 0;
             currentOperation = Operation.None;  
+            wasComma = false;
         }
 
         private void OnClickOperationButton(object sender, EventArgs e)
@@ -68,7 +80,8 @@ namespace Calculator
                 "x" => Operation.Multiplication
             };
 
-            Display.Text = string.Empty;
+            Display.Text = "0";
+            wasComma = false;
         }
 
         private void OnClickResultButton(object sender, EventArgs e)
@@ -98,6 +111,7 @@ namespace Calculator
                     }
                     return firstNumber / secondNumber;                    
             }
+            wasComma = false;
             return 0;
         }
     }

@@ -66,7 +66,7 @@
             this.comma_button.TabIndex = 2;
             this.comma_button.Text = ",";
             this.comma_button.UseVisualStyleBackColor = true;
-            this.comma_button.Click += new System.EventHandler(this.OnClickNumberButton);
+            this.comma_button.Click += new System.EventHandler(this.OnClickCommaButton);
             // 
             // equals_button
             // 
